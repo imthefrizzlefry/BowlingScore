@@ -166,6 +166,161 @@ namespace BowlingScoreUnitTests
             }
         }
 
+
+        [TestMethod]
+        [TestCategory("Positive")]
+        [TestCategory("Acceptance")]
+        public void MultiplePlayerGameCanChooseCorrectWinnerWhenPlayerOneWins()
+        {
+            // create a stringwriter to retrieve console output with
+            using (var sw = new StringWriter())
+            {
+                // define the test input data as a string
+                string testInput = "2\n"    //number of players
+                    + "Steve\n"             // Player 1 Name
+                    + "Renmin\n"            // Player 2 Name
+                    + "3\n" + "2\n"         // Frame 1
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 2
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 3
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 4
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 5
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 6
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 7
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 8
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 9
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"        // Frame 10
+                    +"2\n" + "2\n";
+
+                string expectedResult = "Steve has won the game with a score of 41!";
+                //create a string reader to write to console with
+                using (var sr = new StringReader(testInput))
+                {
+                    Console.SetOut(sw);
+                    Console.SetIn(sr);
+
+                    // Act
+                    BowlingScore.Program.Main(new string[] { "" });
+
+                    // Assert
+                    string actualResult = sw.ToString().Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Last();
+
+                    Assert.AreEqual(expectedResult, actualResult);
+                }
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Positive")]
+        [TestCategory("Acceptance")]
+        public void MultiplePlayerGameCanChooseCorrectWinnerWhenPlayerTwoWins()
+        {
+            // create a stringwriter to retrieve console output with
+            using (var sw = new StringWriter())
+            {
+                // define the test input data as a string
+                string testInput = "2\n"    //number of players
+                    + "Steve\n"             // Player 1 Name
+                    + "Renmin\n"            // Player 2 Name
+                    + "2\n" + "2\n"         // Frame 1
+                    + "3\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 2
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 3
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 4
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 5
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 6
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 7
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 8
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 9
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"        // Frame 10
+                    + "2\n" + "2\n";
+
+                string expectedResult = "Renmin has won the game with a score of 41!";
+                //create a string reader to write to console with
+                using (var sr = new StringReader(testInput))
+                {
+                    Console.SetOut(sw);
+                    Console.SetIn(sr);
+
+                    // Act
+                    BowlingScore.Program.Main(new string[] { "" });
+
+                    // Assert
+                    string actualResult = sw.ToString().Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Last();
+
+                    Assert.AreEqual(expectedResult, actualResult);
+                }
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Positive")]
+        [TestCategory("Acceptance")]
+        public void MultiplePlayerGameCanChooseCorrectWinnersWhenThereIsATieGame()
+        {
+            // create a stringwriter to retrieve console output with
+            using (var sw = new StringWriter())
+            {
+                // define the test input data as a string
+                string testInput = "2\n"    //number of players
+                    + "Steve\n"             // Player 1 Name
+                    + "Renmin\n"            // Player 2 Name
+                    + "2\n" + "2\n"         // Frame 1
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 2
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 3
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 4
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 5
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 6
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 7
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 8
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"         // Frame 9
+                    + "2\n" + "2\n"
+                    + "2\n" + "2\n"        // Frame 10
+                    + "2\n" + "2\n";
+
+                string expectedResult = "Steve and Renmin have tied the game with a score of 40!";
+                //create a string reader to write to console with
+                using (var sr = new StringReader(testInput))
+                {
+                    Console.SetOut(sw);
+                    Console.SetIn(sr);
+
+                    // Act
+                    BowlingScore.Program.Main(new string[] { "" });
+
+                    // Assert
+                    string actualResult = sw.ToString().Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Last();
+
+                    Assert.AreEqual(expectedResult, actualResult);
+                }
+            }
+        }
+
+
         [TestMethod]
         [TestCategory("Negative")]
         [TestCategory("Acceptance")]
@@ -207,6 +362,8 @@ namespace BowlingScoreUnitTests
                 }
             }
         }
+
+
 
 
     }
